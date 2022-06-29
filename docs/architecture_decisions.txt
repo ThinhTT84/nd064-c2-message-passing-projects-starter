@@ -6,22 +6,27 @@
     - Aggregate data from other services using gRPC / REST
         - choose gRPC for more efficient in service to service call, strong stype
         - choose REST for some services since it would be easier to refactor from current code
+
 - Location API
     - REST API for location ingress & location query
     - To serve for large volume of location to be ingress, location ingress API will store data into Kafka for queued data to be processed later, increase response time for ingress api
+
 - Kafka:
     - Kafka is chosen as it is high performance, support large volume of data as well as durable
+
 - Location Consumer Service
     - Service / worker to consume message from Kafka and store data to database
     - Don’t have any API
+
 - Connection API
     - REST API to search for matched location from location db
     - Need to query Person API to get full list of Persons
-        - choose gRPC for more efficient in service to service call, strong stype
-        - Person map caching
-            - for simplicity choose in memory cache, if connection search api load increase, we can introduce Redis for better caching later on when needed
+    - Person map caching
+        - for simplicity choose in memory cache, if connection search api load increase, we can introduce Redis for better caching later on when needed
+
 - Person API
     - gRPC for person creation & query
-- It would be better to separate database for PersonDB & LocationDB however due to time constraint I still use one database, we can prepare database creation script & reconfig services without changing code
+
+- It would be better to separate database for PersonDB & LocationDB however due to time constraint & required development cost optimization I still use one database, we can prepare database creation script & reconfig services without changing code
     - it’s best practices for microservice to have independent services
     - two DB will have very different usage workload
