@@ -1,31 +1,21 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
 from datetime import datetime
 
-from app import db  # noqa
 from geoalchemy2 import Geometry
 from geoalchemy2.shape import to_shape
 from shapely.geometry.point import Point
-from sqlalchemy import BigInteger, Column, Date, DateTime, ForeignKey, Integer, String
-from sqlalchemy.dialects.postgresql import JSONB, UUID
+from sqlalchemy import BigInteger, Column, DateTime, Integer, Sequence
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.ext.declarative import declarative_base
 
+BaseModel = declarative_base()
 
-class Person(db.Model):
-    __tablename__ = "person"
-
-    id = Column(Integer, primary_key=True)
-    first_name = Column(String, nullable=False)
-    last_name = Column(String, nullable=False)
-    company_name = Column(String, nullable=False)
-
-
-class Location(db.Model):
+class Location(BaseModel):
     __tablename__ = "location"
 
-    id = Column(BigInteger, primary_key=True)
-    person_id = Column(Integer, ForeignKey(Person.id), nullable=False)
+    id = Column(BigInteger,  Sequence("location_id_seq"), primary_key=True)
+    person_id = Column(Integer, nullable=False)
     coordinate = Column(Geometry("POINT"), nullable=False)
     creation_time = Column(DateTime, nullable=False, default=datetime.utcnow)
     _wkt_shape: str = None
@@ -56,9 +46,3 @@ class Location(db.Model):
     def latitude(self) -> str:
         coord_text = self.wkt_shape
         return coord_text[coord_text.find("(") + 1 : coord_text.find(" ")]
-
-
-@dataclass
-class Connection:
-    location: Location
-    person: Person

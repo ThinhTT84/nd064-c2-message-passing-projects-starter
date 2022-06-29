@@ -4,8 +4,9 @@ import Connection from "./Connection";
 class Persons extends Component {
   constructor(props) {
     super(props);
-    // TODO: endpoint should be abstracted into a config variable
-    this.endpoint_url = "http://localhost:30001/api/persons";
+    //write log message to console
+    console.log(`Persons.js: ${process.env.REACT_APP_API_HOST}`);
+    this.endpoint_url = `http://${process.env.REACT_APP_API_HOST}:30001/api/persons`;
     this.state = {
       persons: [],
       display: null,
