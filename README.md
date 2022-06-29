@@ -104,7 +104,8 @@ Connections to the Kubernetes services have been set up through a [NodePort](htt
 
 ## Development
 ### New Services
-New services can be created inside of the `modules/` subfolder. You can choose to write something new with Flask, copy and rework the `modules/api` service into something new, or just create a very simple Python application.
+New services can be created inside of the `modules/` subfolder. You can choose to write something new with Flask, copy and rework the `modules/api` service into something new, or just create a very simple Python application. TODO: ThinhTT
+
 
 As a reminder, each module should have:
 1. `Dockerfile`
