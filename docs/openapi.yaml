@@ -1,0 +1,106 @@
+openapi: 3.0.1
+info:
+  title: UdaConnect API
+  version: 0.1.0
+servers:
+- url: /
+tags:
+- name: UdaConnect
+  description: Connections via geolocation.
+paths:
+  /api/locations:
+    post:
+      tags:
+      - UdaConnect
+      operationId: post_locations_resource
+      responses:
+        200:
+          description: Success
+          content: {}
+  /api/locations/{location_id}:
+    get:
+      tags:
+      - UdaConnect
+      operationId: get_location_resource
+      parameters:
+      - name: location_id
+        in: path
+        description: Unique ID for a given Location
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+  /api/persons:
+    get:
+      tags:
+      - UdaConnect
+      operationId: get_persons_resource
+      responses:
+        200:
+          description: Success
+          content: {}
+    post:
+      tags:
+      - UdaConnect
+      operationId: post_persons_resource
+      responses:
+        200:
+          description: Success
+          content: {}
+  /api/persons/{person_id}:
+    get:
+      tags:
+      - UdaConnect
+      operationId: get_person_resource
+      parameters:
+      - name: person_id
+        in: path
+        description: Unique ID for a given Person
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+  /api/persons/{person_id}/connection:
+    get:
+      tags:
+      - UdaConnect
+      operationId: get_connection_data_resource
+      parameters:
+      - name: distance
+        in: query
+        description: Proximity to a given user in meters
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: Upper bound of date range
+        schema:
+          type: string
+      - name: start_date
+        in: query
+        description: Lower bound of date range
+        schema:
+          type: string
+      - name: person_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+          content: {}
+components:
+  responses:
+    MaskError:
+      description: When any error occurs on mask
+      content: {}
+    ParseError:
+      description: When a mask can't be parsed
+      content: {}

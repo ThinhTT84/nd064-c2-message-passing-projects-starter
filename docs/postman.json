@@ -1,0 +1,173 @@
+{
+	"info": {
+		"_postman_id": "6e7accc1-4b43-495e-baf5-05c820cf6ec5",
+		"name": "Udaconnect",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21690389"
+	},
+	"item": [
+		{
+			"name": "Get Location by Location Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{UdaConnect-Api-Host}}:{{UdaConnect-Api-Port}}/api/locations/30",
+					"protocol": "http",
+					"host": [
+						"{{UdaConnect-Api-Host}}"
+					],
+					"port": "{{UdaConnect-Api-Port}}",
+					"path": [
+						"api",
+						"locations",
+						"30"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Location by Location Id in Query string",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{UdaConnect-Api-Host}}:{{UdaConnect-Api-Port}}/api/locations?location_id=30",
+					"protocol": "http",
+					"host": [
+						"{{UdaConnect-Api-Host}}"
+					],
+					"port": "{{UdaConnect-Api-Port}}",
+					"path": [
+						"api",
+						"locations"
+					],
+					"query": [
+						{
+							"key": "location_id",
+							"value": "30"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new location",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"longitude\": \"37.55363\",\n  \"latitude\": \"-121.290883\",\n  \"creation_time\": \"2020-09-15T10:37:06\",\n  \"person_id\": 5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{UdaConnect-Api-Host}}:{{UdaConnect-Api-Port}}/api/locations",
+					"protocol": "http",
+					"host": [
+						"{{UdaConnect-Api-Host}}"
+					],
+					"port": "{{UdaConnect-Api-Port}}",
+					"path": [
+						"api",
+						"locations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new person",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"first_name\": \"Thinh\",\n    \"last_name\": \"Tran Thien\",\n    \"company_name\": \"FPT Software\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{UdaConnect-Api-Host}}:{{UdaConnect-Api-Port}}/api/persons",
+					"protocol": "http",
+					"host": [
+						"{{UdaConnect-Api-Host}}"
+					],
+					"port": "{{UdaConnect-Api-Port}}",
+					"path": [
+						"api",
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get person connections",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"first_name\": \"Thinh\",\n    \"last_name\": \"Tran Thien\",\n    \"company_name\": \"FPT Software\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{UdaConnect-Api-Host}}:{{UdaConnect-Api-Port}}/api/persons/5/connection?start_date=2020-01-01&end_date=2020-07-30&distance=5",
+					"protocol": "http",
+					"host": [
+						"{{UdaConnect-Api-Host}}"
+					],
+					"port": "{{UdaConnect-Api-Port}}",
+					"path": [
+						"api",
+						"persons",
+						"5",
+						"connection"
+					],
+					"query": [
+						{
+							"key": "start_date",
+							"value": "2020-01-01"
+						},
+						{
+							"key": "end_date",
+							"value": "2020-07-30"
+						},
+						{
+							"key": "distance",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "UdaConnect-Api-Host",
+			"value": "192.168.49.2"
+		},
+		{
+			"key": "UdaConnect-Api-Port",
+			"value": "30001"
+		}
+	]
+}
